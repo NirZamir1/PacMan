@@ -19,7 +19,7 @@ namespace PacMan
             {
                 foreach (var entity in entities)
                 {
-                    entity.Do();
+                    entity.Do(entities);
                 }
             }
         }

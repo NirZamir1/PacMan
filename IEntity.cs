@@ -8,7 +8,7 @@ namespace PacMan
 {
     public interface IEntity
     {
-        void Do();
+        void Do(IEntity[] entities);
         int[] GetPosition();
     }
 }

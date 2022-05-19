@@ -11,7 +11,7 @@ namespace PacMan
         public int _y;
         public int _x;
         public int Health { get; set; }
-        public virtual void Do()
+        public virtual void Do(IEntity[] entities)
         {
             throw new NotImplementedException();
         }
