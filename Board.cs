@@ -12,16 +12,22 @@ namespace PacMan
         public Board(IEntity[] _entities)
         {
             entities = _entities;
+            Start();
         }
-        public void Start()
+        private void Start()
         {
             while (true)
             {
                 foreach (var entity in entities)
                 {
-                    entity.Do(entities);
+                    entity.Do(entities,this);
                 }
             }
+        }
+        public bool MovePos(int x,int y,IEntity entity)
+        {
+            //if object can move to ceratin position return true;
+            return true;
         }
     }
 }

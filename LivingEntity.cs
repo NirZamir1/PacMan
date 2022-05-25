@@ -10,8 +10,9 @@ namespace PacMan
     {
         public int _y;
         public int _x;
+        protected char Appearnace;
         public int Health { get; set; }
-        public virtual void Do(IEntity[] entities)
+        public virtual void Do(IEntity[] entities,Board GameBoard)
         {
             throw new NotImplementedException();
         }

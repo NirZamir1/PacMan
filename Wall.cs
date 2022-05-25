@@ -15,7 +15,7 @@ namespace PacMan
             Console.SetCursorPosition(_y, _x);
             Console.Write('/');
         }
-        public override void Do(IEntity[] entities)
+        public override void Do(IEntity[] entities,Board GameBoard)
         {
         }
     }
