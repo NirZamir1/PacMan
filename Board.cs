@@ -24,10 +24,18 @@ namespace PacMan
                 }
             }
         }
-        public bool MovePos(int x,int y,IEntity entity)
+        public bool MovePos(int x, int y, IEntity entity)
         {
-            //if object can move to ceratin position return true;
-            return true;
+            char Appearnace;
+            var _entities = entities.Where(x => !x.Equals(entity));
+            if (_entities.Any(_entity => (_entity.GetPosition()[0] != x) || (_entity.GetPosition()[1] != y)))
+            {
+               Appearnace = entity.GetAppearnace();
+               Console.SetCursorPosition(x, y);
+               Console.Write(Appearnace);
+               return true;
+            }
+            return false;
         }
     }
 }

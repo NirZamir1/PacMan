@@ -21,5 +21,6 @@ namespace PacMan
         {
             return new int[] {_x,_y };
         }
+        public char GetAppearnace() => Appearnace;
     }
 }

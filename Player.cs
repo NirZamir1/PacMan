@@ -40,8 +40,6 @@ namespace PacMan
                 Console.Write(' ');
                 _x = x;
                 _y = y;
-                Console.SetCursorPosition(_x, _y);
-                Console.Write(Appearnace);
             }
         }
     }

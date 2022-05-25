@@ -10,5 +10,6 @@ namespace PacMan
     {
         void Do(IEntity[] entities,Board GameBoard);
         int[] GetPosition();
+        char GetAppearnace();
     }
 }
