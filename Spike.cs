@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    public class Wall : LivingEntity
+    public class Spike : Enemy
     {
-        public Wall(int x, int y)
+        public Spike(int x,int y)
         {
             _x = x;
             _y = y;
-            Appearnace = '/';
+            Damage = 5;
+            Appearnace = '*';
         }
-        public override void Do(List<IEntity> entities,Board GameBoard)
+        public override void Do(List<IEntity> entities, Board GameBoard)
         {
             GameBoard.MovePos(_x, _y, this);
         }

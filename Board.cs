@@ -8,10 +8,10 @@ namespace PacMan
 {
     public class Board
     {
-        IEntity[] entities;
+        List<IEntity> entities;
         public Board(IEntity[] _entities)
         {
-            entities = _entities;
+            entities = _entities.ToList();
             Start();
         }
         private void Start()
@@ -24,16 +24,36 @@ namespace PacMan
                 }
             }
         }
-        public bool MovePos(int x, int y, IEntity entity)
+        public bool MovePos(int x, int y, LivingEntity entity)
         {
             char Appearnace;
             var _entities = entities.Where(x => !x.Equals(entity));
-            if (_entities.Any(_entity => (_entity.GetPosition()[0] != x) || (_entity.GetPosition()[1] != y)))
+            if (x >= 0 && y >= 0 && x < 225)
             {
-               Appearnace = entity.GetAppearnace();
-               Console.SetCursorPosition(x, y);
-               Console.Write(Appearnace);
-               return true;
+                foreach (var item in _entities)
+                {
+                    if(item.GetPosition()[0] == x && item.GetPosition()[1] == y)
+                    {
+                        if(item is Wall)
+                        {
+                            return false;
+                        }
+                        else if (item is Enemy)
+                        {
+                            entity.Health -= ((Enemy)item).Damage;
+                            return false;
+                        }
+                    }
+                }
+                if (x != entity.GetPosition()[0] || y != entity.GetPosition()[1])
+                {
+                    Console.SetCursorPosition(entity.GetPosition()[0], entity.GetPosition()[1]);
+                    Console.Write(' ');
+                }
+                Appearnace = entity.GetAppearnace();
+                Console.SetCursorPosition(x, y);
+                Console.Write(Appearnace);
+                return true;
             }
             return false;
         }

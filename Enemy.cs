@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    public interface IEntity
+    public abstract class Enemy : LivingEntity
     {
-        void Do(List<IEntity> entities,Board GameBoard);
-        int[] GetPosition();
-        char GetAppearnace();
+        public int Damage;
     }
 }

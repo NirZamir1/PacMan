@@ -12,13 +12,15 @@ namespace PacMan
         {
             _x = 0;
             _y = 0;
-            Health = 0;
+            Health = 10;
             Appearnace = 'A';
         }
-       public override void Do(IEntity[] entities,Board GameBoard)
+       public override void Do(List<IEntity> entities,Board GameBoard)
        {
             int x = _x;
             int y = _y;
+            Console.SetCursorPosition(Console.BufferWidth-15, y);
+            Console.WriteLine($"Health - {Health}");
             switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.A:
@@ -36,11 +38,12 @@ namespace PacMan
             }
             if(GameBoard.MovePos(x,y,this))
             {
-                Console.SetCursorPosition(_x, _y);
-                Console.Write(' ');
+                Console.SetCursorPosition(Console.BufferWidth - 15,_y);
+                Console.Write(new String(' ',15));
                 _x = x;
                 _y = y;
             }
+            
         }
     }
 }

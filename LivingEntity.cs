@@ -12,7 +12,7 @@ namespace PacMan
         public int _x;
         protected char Appearnace;
         public int Health { get; set; }
-        public virtual void Do(IEntity[] entities,Board GameBoard)
+        public virtual void Do(List<IEntity> entities,Board GameBoard)
         {
             throw new NotImplementedException();
         }
