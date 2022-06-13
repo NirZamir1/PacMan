@@ -15,9 +15,9 @@ namespace PacMan
             Damage = 5;
             Appearnace = '*';
         }
-        public override void Do(List<IEntity> entities, Board GameBoard)
+        public override int[] Do()
         {
-            GameBoard.MovePos(_x, _y, this);
+            return new int[] { _x, _y };
         }
     }
 }

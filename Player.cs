@@ -15,7 +15,7 @@ namespace PacMan
             Health = 10;
             Appearnace = 'A';
         }
-       public override void Do(List<IEntity> entities,Board GameBoard)
+       public override int[] Do()
        {
             int x = _x;
             int y = _y;
@@ -36,13 +36,12 @@ namespace PacMan
                     x++;
                     break;
             }
-            if(GameBoard.MovePos(x,y,this))
+            if(y != _y && y > 0)
             {
-                Console.SetCursorPosition(Console.BufferWidth - 15,_y);
-                Console.Write(new String(' ',15));
-                _x = x;
-                _y = y;
+                Console.SetCursorPosition(Console.BufferWidth-15, _y);
+                Console.WriteLine(new String(' ',15));
             }
+            return new[] { x, y };
             
         }
     }

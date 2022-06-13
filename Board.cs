@@ -20,39 +20,44 @@ namespace PacMan
             {
                 foreach (var entity in entities)
                 {
-                    entity.Do(entities,this);
+                    if (entity is LivingEntity)
+                    {
+                        MovePos(entity.Do(),(LivingEntity)entity);
+                    }
                 }
             }
         }
-        public bool MovePos(int x, int y, LivingEntity entity)
+        public bool MovePos(int[] xy, LivingEntity entity)
         {
             char Appearnace;
             var _entities = entities.Where(x => !x.Equals(entity));
-            if (x >= 0 && y >= 0 && x < 225)
+            if (xy[0] >= 0 && xy[1] >= 0 && xy[0] <Console.BufferWidth-15)
             {
                 foreach (var item in _entities)
                 {
-                    if(item.GetPosition()[0] == x && item.GetPosition()[1] == y)
+                    if(item.GetPosition()[0] == xy[0] && item.GetPosition()[1] == xy[1])
                     {
                         if(item is Wall)
                         {
                             return false;
                         }
-                        else if (item is Enemy)
+                        else if (item is Enemy )
                         {
                             entity.Health -= ((Enemy)item).Damage;
                             return false;
                         }
                     }
                 }
-                if (x != entity.GetPosition()[0] || y != entity.GetPosition()[1])
+                if (xy[0] != entity.GetPosition()[0] || xy[1] != entity.GetPosition()[1])
                 {
                     Console.SetCursorPosition(entity.GetPosition()[0], entity.GetPosition()[1]);
                     Console.Write(' ');
                 }
                 Appearnace = entity.GetAppearnace();
-                Console.SetCursorPosition(x, y);
+                Console.SetCursorPosition(xy[0], xy[1]);
                 Console.Write(Appearnace);
+                entity._x= xy[0];
+                entity._y= xy[1];
                 return true;
             }
             return false;
