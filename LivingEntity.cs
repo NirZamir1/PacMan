@@ -8,8 +8,8 @@ namespace PacMan
 {
     public abstract class LivingEntity: IEntity
     {
-        public int _y;
-        public int _x;
+        public int _y { get; set; }
+        public int _x { get; set; }
         protected char Appearnace;
         public int Health { get; set; }
         public virtual int[] Do()

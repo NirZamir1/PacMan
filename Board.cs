@@ -18,18 +18,48 @@ namespace PacMan
         {
             while (true)
             {
-                foreach (var entity in entities)
-                {
+                /*
+                 foreach (var entity in entities)
+                 {
                     if (entity is LivingEntity)
-                    {
-                        MovePos(entity.Do(),(LivingEntity)entity);
-                    }
+                     {
+                        var xy = entity.Do();
+                        if (MovePos(xy,(LivingEntity)entity))
+                             isChanged = true;
+                     }
+
+                 }
+                 if (isChanged)
+                */
+                var LivingEntities = entities.Where(x => x is LivingEntity).Select(x => (LivingEntity)x);
+                var MoveEntities = LivingEntities.Select(x => (Entity: x, xy: x.Do())).Where(x => !x.xy.Equals(x.Entity.GetPosition())).Where(x => MovePos(x.xy,x.Entity));
+                foreach (var LivingEntity in MoveEntities)
+                {
+                    Draw(LivingEntity.Entity.GetPosition(), LivingEntity.xy, LivingEntity.Entity.GetAppearnace());
+                    LivingEntity.Entity._x = LivingEntity.xy[0];
+                    LivingEntity.Entity._y = LivingEntity.xy[1];
                 }
             }
         }
+        public void Draw(int[] pastPos, int[] curPos,char Appearnace)
+        {
+            Console.SetCursorPosition(pastPos[0], pastPos[1]);
+            Console.Write(' ');
+            Console.SetCursorPosition(curPos[0], curPos[1]);
+            Console.Write(Appearnace);
+            // doesn't work with console.clear();
+
+            /*
+            Console.Clear();
+            foreach (var item in entities)
+            {
+                Console.SetCursorPosition(item.GetPosition()[0], item.GetPosition()[1]);
+                Console.Write(item.GetAppearnace());
+            }
+            */
+        }
         public bool MovePos(int[] xy, LivingEntity entity)
         {
-            char Appearnace;
             var _entities = entities.Where(x => !x.Equals(entity));
             if (xy[0] >= 0 && xy[1] >= 0 && xy[0] <Console.BufferWidth-15)
             {
@@ -48,7 +78,7 @@ namespace PacMan
                         }
                     }
                 }
-                if (xy[0] != entity.GetPosition()[0] || xy[1] != entity.GetPosition()[1])
+                /*if (xy[0] != entity.GetPosition()[0] || xy[1] != entity.GetPosition()[1])
                 {
                     Console.SetCursorPosition(entity.GetPosition()[0], entity.GetPosition()[1]);
                     Console.Write(' ');
@@ -56,8 +86,10 @@ namespace PacMan
                 Appearnace = entity.GetAppearnace();
                 Console.SetCursorPosition(xy[0], xy[1]);
                 Console.Write(Appearnace);
+                
                 entity._x= xy[0];
                 entity._y= xy[1];
+                */
                 return true;
             }
             return false;
