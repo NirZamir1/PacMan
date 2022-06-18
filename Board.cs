@@ -32,10 +32,16 @@ namespace PacMan
                  if (isChanged)
                 */
                 var LivingEntities = entities.Where(x => x is LivingEntity).Select(x => (LivingEntity)x);
-                var MoveEntities = LivingEntities.Select(x => (Entity: x, xy: x.Do())).Where(x => !x.xy.Equals(x.Entity.GetPosition())).Where(x => MovePos(x.xy,x.Entity));
+                var MoveEntities = LivingEntities
+                                // TODO: [bnaya 2022-06-18] it show you got the idea of LINQ, yet as most of us do when discover a new tech, we use it too much. think whether it won't be easier to understanding if you would go in within the foreach (maybe encapsulate it in a class or method)
+                                .Select(x => (Entity: x, xy: x.Do()))
+                                .Where(x => !x.xy.Equals(x.Entity.GetPosition()))
+                                .Where(x => MovePos(x.xy,x.Entity));
                 foreach (var LivingEntity in MoveEntities)
                 {
+                    // TODO: [bnaya 2022-06-18] don't call methods inside the Draw function (it's hard to debug and less clear), call it befor the method & hold return value inside a variable
                     Draw(LivingEntity.Entity.GetPosition(), LivingEntity.xy, LivingEntity.Entity.GetAppearnace());
+
                     LivingEntity.Entity._x = LivingEntity.xy[0];
                     LivingEntity.Entity._y = LivingEntity.xy[1];
                 }
@@ -43,6 +49,7 @@ namespace PacMan
         }
         public void Draw(int[] pastPos, int[] curPos,char Appearnace)
         {
+            // TODO: [bnaya 2022-06-18] what will happens if me = 'A' & enemy = 'E' change positions? befor state is 'AE' after everyone moves it should look like 'EA', I don't sure this logic will do it correct without deleting either 'A' or 'E'. Think of it & come with a simple solution of not deleting anything when trying to clear previous position 
             Console.SetCursorPosition(pastPos[0], pastPos[1]);
             Console.Write(' ');
             Console.SetCursorPosition(curPos[0], curPos[1]);
@@ -58,6 +65,7 @@ namespace PacMan
             }
             */
         }
+
         public bool MovePos(int[] xy, LivingEntity entity)
         {
             var _entities = entities.Where(x => !x.Equals(entity));
@@ -67,7 +75,9 @@ namespace PacMan
                 {
                     if(item.GetPosition()[0] == xy[0] && item.GetPosition()[1] == xy[1])
                     {
-                        if(item is Wall)
+                        // remark: [bnaya 2022-06-18] nice use of pattern matching
+                        // TODO: [bnaya 2022-06-18] think of edge cases, like me & my enemy moving to each other positions, this algorithm might miss it depending the location in the entities array (locale before or after the enemy) 
+                        if (item is Wall)
                         {
                             return false;
                         }

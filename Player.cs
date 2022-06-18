@@ -15,8 +15,10 @@ namespace PacMan
             Health = 10;
             Appearnace = 'A';
         }
+
        public override int[] Do()
-       {
+       { 
+            // TODO: [bnaya 2022-06-18] 
             int x = _x;
             int y = _y;
             Console.SetCursorPosition(Console.BufferWidth-15, y);
@@ -24,15 +26,19 @@ namespace PacMan
             switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.A:
+                case ConsoleKey.LeftArrow:
                     x--;
                     break;
                 case ConsoleKey.W:
+                case ConsoleKey.UpArrow:
                     y--;
                     break;
                 case ConsoleKey.S:
+                case ConsoleKey.DownArrow:
                     y++;
                     break;
                 case ConsoleKey.D:
+                case ConsoleKey.RightArrow:
                     x++;
                     break;
             }
