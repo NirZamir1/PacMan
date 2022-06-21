@@ -16,11 +16,7 @@ namespace PacMan
         {
             throw new NotImplementedException();
         }
-
-        public int[] GetPosition()
-        {
-            return new int[] {_x,_y };
-        }
+        public int[] GetPosition { get => new int[] { _x,_y};}
         public char GetAppearnace() => Appearnace;
     }
 }

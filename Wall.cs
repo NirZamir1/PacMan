@@ -14,7 +14,7 @@ namespace PacMan
             _y = y;
             Appearnace = '/';
         }
-        public override int[] Do()
+        public override int[] Do( )
         {
             return new int[] { _x, _y };
         }

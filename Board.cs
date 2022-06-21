@@ -18,26 +18,23 @@ namespace PacMan
         {
             while (true)
             {
-                /*
-                 foreach (var entity in entities)
-                 {
-                    if (entity is LivingEntity)
-                     {
-                        var xy = entity.Do();
-                        if (MovePos(xy,(LivingEntity)entity))
-                             isChanged = true;
-                     }
-
-                 }
-                 if (isChanged)
-                */
-                var LivingEntities = entities.Where(x => x is LivingEntity).Select(x => (LivingEntity)x);
-                var MoveEntities = LivingEntities.Select(x => (Entity: x, xy: x.Do())).Where(x => !x.xy.Equals(x.Entity.GetPosition())).Where(x => MovePos(x.xy,x.Entity));
+                var LivingEntities = entities
+                    .Where(x => x is LivingEntity)
+                    .Select(x => (LivingEntity)x);
+                var MoveEntities = LivingEntities
+                    .Select(x => (Entity: x, xy: x.Do()))
+                    .ToList();
                 foreach (var LivingEntity in MoveEntities)
                 {
-                    Draw(LivingEntity.Entity.GetPosition(), LivingEntity.xy, LivingEntity.Entity.GetAppearnace());
-                    LivingEntity.Entity._x = LivingEntity.xy[0];
-                    LivingEntity.Entity._y = LivingEntity.xy[1];
+                    if (MovePos(LivingEntity.xy, LivingEntity.Entity, MoveEntities))
+                    {
+                        int[] pastPos = LivingEntity.Entity.GetPosition;
+                        int[] curPos = LivingEntity.xy;
+                        char Appearnace = LivingEntity.Entity.GetAppearnace();
+                        Draw(pastPos, curPos, Appearnace);
+                        LivingEntity.Entity._x = LivingEntity.xy[0];
+                        LivingEntity.Entity._y = LivingEntity.xy[1];
+                    }
                 }
             }
         }
@@ -46,36 +43,27 @@ namespace PacMan
             Console.SetCursorPosition(pastPos[0], pastPos[1]);
             Console.Write(' ');
             Console.SetCursorPosition(curPos[0], curPos[1]);
-            Console.Write(Appearnace);
-            // doesn't work with console.clear();
-
-            /*
-            Console.Clear();
-            foreach (var item in entities)
-            {
-                Console.SetCursorPosition(item.GetPosition()[0], item.GetPosition()[1]);
-                Console.Write(item.GetAppearnace());
-            }
-            */
+            Console.Write(Appearnace);  
         }
-        public bool MovePos(int[] xy, LivingEntity entity)
+        public bool MovePos(int[] xy, LivingEntity entity,IEnumerable<(LivingEntity Entity,int[] xy)> MoveList)
         {
-            var _entities = entities.Where(x => !x.Equals(entity));
-            if (xy[0] >= 0 && xy[1] >= 0 && xy[0] <Console.BufferWidth-15)
+            var _entities = MoveList.Where(x => !x.Entity.Equals(entity));
+            if(xy[0] >= 0 && xy[1] >= 0 && xy[0] <Console.BufferWidth-15)
             {
                 foreach (var item in _entities)
                 {
-                    if(item.GetPosition()[0] == xy[0] && item.GetPosition()[1] == xy[1])
+                    if(item.xy[0] == xy[0] && item.xy[1] == xy[1])
                     {
-                        if(item is Wall)
+                        if(item.Entity is Wall)
                         {
                             return false;
                         }
-                        else if (item is Enemy )
+                        else if (item.Entity is Enemy )
                         {
-                            entity.Health -= ((Enemy)item).Damage;
+                            entity.Health -= ((Enemy)item.Entity).Damage;
                             return false;
                         }
+                        return false;
                     }
                 }
                 /*if (xy[0] != entity.GetPosition()[0] || xy[1] != entity.GetPosition()[1])

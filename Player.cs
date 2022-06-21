@@ -15,26 +15,29 @@ namespace PacMan
             Health = 10;
             Appearnace = 'A';
         }
-       public override int[] Do()
-       {
+        public override int[] Do()
+        {
             int x = _x;
             int y = _y;
-            Console.SetCursorPosition(Console.BufferWidth-15, y);
+            Console.SetCursorPosition(Console.BufferWidth - 15, y);
             Console.WriteLine($"Health - {Health}");
-            switch (Console.ReadKey(true).Key)
+            if (Console.KeyAvailable)
             {
-                case ConsoleKey.A:
-                    x--;
-                    break;
-                case ConsoleKey.W:
-                    y--;
-                    break;
-                case ConsoleKey.S:
-                    y++;
-                    break;
-                case ConsoleKey.D:
-                    x++;
-                    break;
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.A:
+                        x--;
+                        break;
+                    case ConsoleKey.W:
+                        y--;
+                        break;
+                    case ConsoleKey.S:
+                        y++;
+                        break;
+                    case ConsoleKey.D:
+                        x++;
+                        break;
+                }
             }
             if(y != _y && y > 0)
             {
