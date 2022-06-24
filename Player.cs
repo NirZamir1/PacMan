@@ -26,15 +26,19 @@ namespace PacMan
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.A:
+                    case ConsoleKey.LeftArrow:
                         x--;
                         break;
                     case ConsoleKey.W:
+                    case ConsoleKey.UpArrow:
                         y--;
                         break;
                     case ConsoleKey.S:
+                    case ConsoleKey.DownArrow:
                         y++;
                         break;
                     case ConsoleKey.D:
+                    case ConsoleKey.RightArrow:
                         x++;
                         break;
                 }
