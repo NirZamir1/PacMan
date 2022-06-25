@@ -8,7 +8,10 @@ namespace PacMan
 {
     public interface IEntity
     {
-        void Do(IEntity[] entities);
-        int[] GetPosition();
+        int _y {protected get; set; }
+        int _x {protected get; set; }
+        int[] GetPososition { get=> new int[] {_x,_y};}
+        int[] Do();
+        char GetAppearnace();
     }
 }

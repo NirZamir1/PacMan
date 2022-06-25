@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    public class Wall : LivingEntity
+    public class Spike : Enemy
     {
-        public Wall(int x, int y)
+        public Spike(int x,int y)
         {
             _x = x;
             _y = y;
-            Appearnace = '/';
+            Damage = 5;
+            Appearnace = '*';
         }
-        public override int[] Do( )
+        public override int[] Do()
         {
             return new int[] { _x, _y };
         }
