@@ -15,7 +15,6 @@ namespace PacMan
             t.Elapsed += callback;
             t.Start();
         }
-
         private void callback(object? sender, System.Timers.ElapsedEventArgs e)
         {
             x = _x;
@@ -24,11 +23,8 @@ namespace PacMan
         }
 
         public override int[] Do()
-        {
-           
+        {  
             return new int[] { x, _y };
         }
-
-        
     }
 }

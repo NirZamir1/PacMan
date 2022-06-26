@@ -11,11 +11,16 @@ namespace PacMan
         List<IEntity> entities;
         public Board(IEntity[] _entities)
         {
+          
             entities = _entities.ToList();
             Start();
         }
         private void Start()
         {
+            foreach (var item in entities)
+            {
+                item.MoveRequest += MoveHandeler;
+            }
             while (true)
             {
                 var LivingEntities = entities
@@ -38,6 +43,9 @@ namespace PacMan
                 }
             }
         }
+
+       
+
         public void Draw(int[] pastPos, int[] curPos,char Appearnace)
         {
             Console.SetCursorPosition(pastPos[0], pastPos[1]);
