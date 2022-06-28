@@ -6,17 +6,23 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    public class Wall : LivingEntity
+    public class Wall : IEntity
     {
         public Wall(int x, int y)
         {
-            _x = x;
-            _y = y;
+            X = x;
+            Y = y;
             Appearnace = '/';
         }
-        public override int[] Do( )
+        public void innit()
         {
-            return new int[] { _x, _y };
+            MoveRequest.Invoke(new int[] { X, Y }, this);
         }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Health { get; set; }
+        public char Appearnace { get; set; }
+
+        public event Action<int[], IEntity> MoveRequest;
     }
 }

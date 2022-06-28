@@ -2,14 +2,22 @@
 
 namespace PacMan
 {
-    public class E : LivingEntity
+    public class E : IEntity
     {
         int x;
+
+        public event Action<int[], IEntity> MoveRequest;
+
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Health { get; set; }
+        public char Appearnace { get; set; }
+
         public E()
         {
-            _x = 10;
-            x = _x;
-            _y = 0;
+            X = 10;
+            x = X;
+            Y = 0;
             Appearnace = 'E';
             Timer t = new Timer(500);
             t.Elapsed += callback;
@@ -17,14 +25,20 @@ namespace PacMan
         }
         private void callback(object? sender, System.Timers.ElapsedEventArgs e)
         {
-            x = _x;
-            if(_x>0)
-            x--;
+            x = X;
+            if (x > 0)
+            {
+                x--;
+                MoveRequest?.Invoke(new int[] { x, Y }, this);
+            }
         }
 
-        public override int[] Do()
-        {  
-            return new int[] { x, _y };
+       
+        public void innit()
+        {
+            Timer t = new Timer(1000);
+            t.Elapsed += callback;
+            t.Start();
         }
     }
 }

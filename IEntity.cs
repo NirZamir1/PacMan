@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    public record XY(int X, int Y);
-    
     public interface IEntity
     {
-       
-        XY Position { get; set; }
-        char GetAppearnace();
+        int X { get; set; }
+        int Y { get; set; }
         event Action<int[],IEntity> MoveRequest;
+        int Health { get; set; }
+        char Appearnace { get; set; }
+        void innit();
     }
-    
+
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    public abstract class Enemy : LivingEntity
+    public interface  IEnemy : IEntity
     {
-        public int Damage;
+        public int Damage { get; set; }
+
     }
 }
