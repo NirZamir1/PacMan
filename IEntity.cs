@@ -8,12 +8,12 @@ namespace PacMan
 {
     public interface IEntity
     {
-        int X { get; set; }
-        int Y { get; set; }
-        event Action<int[],IEntity> MoveRequest;
+        event Action<XY,IEntity> MoveRequest;
         int Health { get; set; }
         char Appearnace { get; set; }
         void innit();
+        public XY Position { get; set; }
     }
+    public record XY(int X, int Y);
 
 }

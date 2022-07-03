@@ -24,22 +24,25 @@ namespace PacMan
                 item.innit();
             }
         }
-        public static void Draw(int[] pastPos, int[] curPos,char Appearnace)
+        public static void Draw(XY pastPos, XY curPos,char Appearnace)
         {
-            Console.SetCursorPosition(pastPos[0], pastPos[1]);
-            Console.Write(' ');
-            Console.SetCursorPosition(curPos[0], curPos[1]);
-            Console.Write(Appearnace);  
+            lock(Locker._Lock)
+            {
+                Console.SetCursorPosition(pastPos.X, pastPos.Y);
+                Console.Write(' ');
+                Console.SetCursorPosition(curPos.X, curPos.Y);
+                Console.Write(Appearnace);
+            }
         }
-        public void MovePos(int[] WantedPos,IEntity entity)
+        public void MovePos(XY WantedPos,IEntity entity)
         {
             var _entities = entities.Where(x => !x.Equals(entity));
             bool All = false;
-            if(WantedPos[0] >= 0 && WantedPos[1] >= 0 && WantedPos[0] <Console.BufferWidth-15)
+            if(WantedPos.X >= 0 && WantedPos.Y >= 0 && WantedPos.X <Console.BufferWidth-15)
             {
                 foreach (var item in _entities)
                 {
-                    if(item.X == WantedPos[0] && item.Y == WantedPos[1])
+                    if(item.Position.X == WantedPos.X && item.Position.Y == WantedPos.Y)
                     {
                         if (item is IEnemy)
                         {
@@ -50,9 +53,8 @@ namespace PacMan
                 }
                 if (All == false)
                 {
-                    Draw(new int[] { entity.X, entity.Y }, WantedPos, entity.Appearnace);
-                    entity.X = WantedPos[0];
-                    entity.Y = WantedPos[1];
+                    Draw( entity.Position, WantedPos, entity.Appearnace);
+                    entity.Position = WantedPos;
                 }
             }
         }
