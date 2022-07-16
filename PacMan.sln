@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacMan", "PacMan.csproj", "{56AAD114-C124-45A6-B7C4-79073E4B9596}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacMan", "PacMan.csproj", "{56AAD114-C124-45A6-B7C4-79073E4B9596}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityBase", "D:\C# projects\Entity\Entity\EntityBase.csproj", "{C7DA6CBC-1724-4ACF-80BD-E645D150C9BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Player", "D:\C# projects\Player\Player\Player.csproj", "{76E4425A-9193-4778-AC71-2DAD262952E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spike", "D:\C# projects\Spike\Spike\Spike.csproj", "{63DB92C3-1101-4B26-BD7B-27C3BB8B093F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wall", "D:\C# projects\Wall\Wall\Wall.csproj", "{6A847B96-C22D-424B-862B-F040BF92B8E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{56AAD114-C124-45A6-B7C4-79073E4B9596}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56AAD114-C124-45A6-B7C4-79073E4B9596}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56AAD114-C124-45A6-B7C4-79073E4B9596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7DA6CBC-1724-4ACF-80BD-E645D150C9BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7DA6CBC-1724-4ACF-80BD-E645D150C9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7DA6CBC-1724-4ACF-80BD-E645D150C9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7DA6CBC-1724-4ACF-80BD-E645D150C9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E4425A-9193-4778-AC71-2DAD262952E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E4425A-9193-4778-AC71-2DAD262952E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E4425A-9193-4778-AC71-2DAD262952E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E4425A-9193-4778-AC71-2DAD262952E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63DB92C3-1101-4B26-BD7B-27C3BB8B093F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63DB92C3-1101-4B26-BD7B-27C3BB8B093F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63DB92C3-1101-4B26-BD7B-27C3BB8B093F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63DB92C3-1101-4B26-BD7B-27C3BB8B093F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A847B96-C22D-424B-862B-F040BF92B8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A847B96-C22D-424B-862B-F040BF92B8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A847B96-C22D-424B-862B-F040BF92B8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A847B96-C22D-424B-862B-F040BF92B8E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

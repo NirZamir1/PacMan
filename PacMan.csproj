@@ -7,4 +7,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="D:\C# projects\Entity\Entity\EntityBase.csproj" />
+    <ProjectReference Include="D:\C# projects\Player\Player\Player.csproj" />
+    <ProjectReference Include="D:\C# projects\Spike\Spike\Spike.csproj" />
+    <ProjectReference Include="D:\C# projects\Wall\Wall\Wall.csproj" />
+  </ItemGroup>
+
 </Project>
